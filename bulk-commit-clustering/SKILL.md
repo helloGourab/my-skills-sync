@@ -1,20 +1,13 @@
 ---
 name: bulk-commit-clustering
-description: Use when the user has a pile of uncommitted git changes from a long session and asks to organize/commit them in bulk — e.g. "bunch of changes piled up, commit these", "haven't committed in a while, group and commit this", "batch commit my working tree", "cluster these into logical commits". Inspects all changes, detects the project's commit convention, groups files into semantic clusters (one per feature/fix/chore), proposes clusters + messages for approval, then commits each. Do NOT use for an ordinary single commit, "commit and push", or one already-scoped change.
+description: makes meaningful bulk git commits after identifying appropriate cluster of changes made to codebase
 ---
 
 # Bulk Commit Clustering
 
 ## When this applies
 
-Trigger only when the user is asking you to deal with an *accumulated, mixed pile* of
-uncommitted work — not a single change, not a routine "commit and push." Signs it applies:
-they mention having skipped commits for a while, ask you to "group," "cluster," "organize,"
-or "batch" changes, or describe several unrelated things they built in one sitting that all
-need to land as separate commits.
-
-If someone just asks you to commit the thing you *just* did, that's a normal commit — skip
-this whole workflow and just commit it.
+Trigger only when the user says `bulk-commit-clustering` or `/bulk-commit-clustering`.
 
 ## Why this workflow exists
 
@@ -22,7 +15,7 @@ Committing after every tiny edit breaks flow during fast, iterative building. Bu
 commits entirely loses the ability to review, bisect, revert, or understand history later.
 This skill is the bridge: it lets the user build freely and then, at a natural checkpoint,
 turn the pile into the atomic commits they would have made along the way — grouped by what
-actually changed *semantically*, not by which directory a file happens to live in.
+actually changed _semantically_, not by which directory a file happens to live in.
 
 Because this rewrites how the project's history will look, always show your plan and get
 approval before touching git. Never push — this skill's job ends at local commits.
@@ -63,7 +56,7 @@ Scan the recent log for a pattern before deciding on a style:
 ## Step 2: Understand every change
 
 For each changed/untracked file, look at the actual diff content, not just the filename —
-file paths are a weak signal for what a change *is*:
+file paths are a weak signal for what a change _is_:
 
 ```bash
 git diff -- <file>          # unstaged changes
@@ -77,6 +70,7 @@ that now use it belong together even though they're in different folders. Two un
 one-line tweaks in the same file do not belong together just because they share a filename.
 
 Watch for:
+
 - **Files with multiple unrelated hunks.** If a single file mixes two unrelated changes
   (e.g. an unrelated formatting fix alongside a real feature edit), don't force the whole
   file into one cluster — note the split explicitly in your plan and use `git add -p`-style
@@ -128,6 +122,7 @@ Once approved, work through the clusters one at a time, most-independent-first i
 keep it simple and sequential:
 
 For a normal cluster:
+
 ```bash
 git add <file1> <file2> ...
 git status                 # sanity check: only this cluster's files are staged
@@ -135,6 +130,7 @@ git commit -m "type(scope): subject" -m "optional body bullet 1" -m "optional bo
 ```
 
 For a cluster involving a split file (mixed hunks):
+
 ```bash
 git add -p -- <file>       # stage only the relevant hunk(s) for this cluster
 git status
