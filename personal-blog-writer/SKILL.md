@@ -5,7 +5,7 @@ description: Turn unstructured personal material (notes, scratch pads, discussio
 
 # Personal Blog Writer
 
-Turn raw material into a publishable blog post that still sounds like the author. The job is to unclutter and organize, not to rewrite. The author's voice, opinions, phrasing, and personality stay intact. The output should look like the author on a tidy day, not like a different writer.
+Turn raw material into a publishable blog post that still sounds like the author. The job is to unclutter and organize, not to rewrite. The author's voice, opinions, phrasing, and personality stay intact. The output should sound like the author on a good day, not like a different writer.
 
 ## Inputs
 
@@ -33,6 +33,22 @@ Every run produces:
 3. **Any visuals** the post needs, following Step 4b.
 
 If the material is too thin for a real post, say so in the reply and do not create a file.
+
+## Whose voice this is
+
+This is the author talking, not an explainer. The reader is eavesdropping on someone working through their own problem. Nobody is being onboarded, taught, or sold anything.
+
+- First person, spoken register. Contractions, fragments, self-interruptions, "I don't know" as texture rather than hedging.
+- The struggle is the post. The wrong turns, the wasted hours, and the moment it clicked all stay. Never present a clean path that only exists in hindsight.
+- Confusion usually starts at the word or the concept, not at the config. Show the term landing, the false associations it dragged in, then kill it flat.
+- Nagging about your own shit is the tone. Complaining is allowed and expected.
+- Names tools, vendors, people, and decisions. States a verdict, then moves on. No balancing sentence after an opinion.
+- Own mistakes get confessed in full, exact error string included. No dignity-saving.
+- Profanity where the frustration is real. No quota, no decoration, never as a punchline the author didn't write.
+- The reader is a peer who isn't on the team: they searched this problem and want the note from someone who already ate it.
+- When trimming, asides and qualifiers go first. The story and the technical detail stay.
+
+Steps 4 and 5 enforce this. Where these lines and the author's own phrasing in the material disagree, the material wins.
 
 ## Pipeline
 
@@ -67,17 +83,15 @@ The material may reference a fact, a version number, a command's behavior, or a 
 
 Follow the approved outline. Apply these rules:
 
-- **Layout and breathing room:** Avoid machine-like walls of text and dense, back-to-back paragraph dumps. Keep paragraphs short and punchy (1 to 3 sentences maximum), separated by clear blank lines so the post can breathe.
-- **Visual anchors and structural variety:** Break up text logically using:
-  - Horizontal rules (`---`) between major conceptual shifts.
-  - Blockquotes (`> **Core insight**`) to anchor central realizations, principles, or mental models.
-  - Markdown tables for direct side-by-side technical trade-offs (e.g. speed, ratio, memory, windows) instead of dense explanatory paragraphs.
-  - Concise bullet items with bold lead-ins for structural lists.
+- **Breathing room:** Keep paragraphs short and separate them with blank lines. Short by default, longer only where a technical point genuinely needs the run. Never ship dense back-to-back paragraph walls.
+- **Structure:** Plain prose and headers by default. Add a horizontal rule (`---`) only at a real conceptual pivot, a blockquote only for a principle the author actually says out loud, a table only for a side-by-side comparison already present in the material. Do not manufacture structural variety. Do not use bold lead-ins on bullets.
 - Keep the author's sentences wherever they work. Fix grammar, spelling, and punctuation. Reorder paragraphs and join fragments so the flow makes sense.
 - Only reword a sentence when it is broken, unclear, or self-contradictory. Otherwise leave it alone.
-- Keep the author's personality: jokes, asides, bluntness, the way they end a thought. Remove only clutter: repetition, dead ends, filler words from transcripts, duplicated notes, and chat chatter that does not belong in a post.
-- Write in first person as the author. Frame the narrative through personal journey and discovery: ground it in how I encountered the problem, got confused or overwhelmed by it ("For the longest time I wondered...", "I used to think X until I dug in and realized Y..."), and how I finally connected the dots. Don't lecture or recite facts like a textbook.
-- **Short, purposeful analogies:** When a technical concept is counter-intuitive or abstract, use a short, grounded real-world analogy to make it instantly click. Don't go overboard or stack metaphors—limit it to one or two crisp analogies in the entire post where they genuinely clarify mechanics, never decorative ones.
+- Keep the author's personality: jokes, asides, bluntness, the way they end a thought. Keep the mess too: the detour, the red herring, the thing that wasted an afternoon. Remove only clutter: repetition, dead ends, filler words from transcripts, duplicated notes, and chat chatter that does not belong in a post.
+- **Talking, not teaching.** Write in first person as the author, mid-problem. Drop the reader into it, keep the wrong turns, land the fix. Never narrate a discovery arc ("For the longest time I wondered...", "I used to think X until I dug in and realized Y..."). Never explain what the reader should take away.
+- **Confusion usually starts at the word.** When the material wrestles with a term that means four things in four contexts, that's the spine of the post. Show where the word landed, the wrong meanings it dragged along, and the flat one-line resolution that killed it. Do not replace that with a tidy definition.
+- **Keep the verdicts flat.** If the author says a tool has gotten worse, or a decision was dumb, it stays that sharp. Do not add balance the author never wrote.
+- **Short, purposeful analogies:** When a technical concept is counter-intuitive or abstract, use a short, grounded real-world analogy to make it instantly click. Don't go overboard or stack metaphors. Limit it to one or two crisp analogies in the entire post where they genuinely clarify mechanics, never decorative ones.
 - Do not copy, quote, or cite external sources in the post text. Facts from gap-filling are restated in the author's voice. Only images get credits.
 - Keep code, commands, file paths, error messages, and numbers exactly as written.
 - Use headers only where the content has distinct sections. Use bullet lists only where the material is already a list.
@@ -87,7 +101,7 @@ Follow the approved outline. Apply these rules:
 
 Add a diagram or image only when it makes the point clearer than text. Skip anything decorative. Most posts need zero to two.
 
-- **Mermaid diagram** for flows, sequences, and architecture. Write it inline in a ```mermaid code block. No upload needed. Keep diagrams well-proportioned: do not cram two distinct systems or models into a single wide diagram that gets stretched or squished horizontally. Split them into separate, focused diagrams (favoring `flowchart TD` or compact `flowchart LR`).
+- **Mermaid diagram** for flows, sequences, and architecture. Write it inline in a ```mermaid code block. No upload needed. Keep diagrams well-proportioned: do not cram two distinct systems or models into a single wide diagram that gets stretched or squished horizontally. Split them into separate, focused diagrams (favoring `flowchart TD`or compact`flowchart LR`).
 - **Generated image** for a concept a diagram can't show. Save the file at `generated/images/<blog-slug>/<descriptive-name>.png`. Upload it with:
 
   ```
@@ -95,6 +109,7 @@ Add a diagram or image only when it makes the point clearer than text. Skip anyt
   ```
 
   The output includes a line like `CDN URL  https://ik.imagekit.io/...`. Take that URL and use it in the Markdown as `![alt text](https://ik.imagekit.io/...)`. Never put local paths in the post.
+
 - **Resizing or other transforms** use ImageKit query parameters on the CDN URL, e.g., `https://ik.imagekit.io/.../request-flow.png?tr=w-800`. No new file is needed.
 - **Online image.** Use its source URL and add a credit line directly under it (e.g., "Image: Wikimedia Commons").
 
@@ -104,16 +119,34 @@ Alt text describes what the image shows. Upload each image once and reuse its UR
 
 ### Step 5: Voice pass
 
-Match this profile:
+Rewrite toward this voice. It is the author talking out loud about their own mess, not a guide.
 
-- Short, crisp sentences by default. Go longer only when a technical point needs it.
-- A direct, catchy opening. No throat-clearing, no "In today's world."
-- Casual peer-to-peer tone, written for another developer. Not a beginner tutorial, not a guru lecture.
-- Confident without posturing. Not an expert showing off, not a student apologizing. The target is a plain "I got overwhelmed by this, dug into it, finally figured out how it connects, and wrote it down" register.
-- Contractions always: don't, it's, can't.
-- Mild profanity only if the material already uses it or the mood clearly calls for it. Never more than the author would use.
-- Light wit is fine. Self-deprecating jokes and dry humor are fine. Humor should come from the content.
-- Ending: a short, wry line that fits the post. No calls to action, no "Let me know below," no "Thoughts?"
+- First person, present. "I hit this", "I had no idea", "turns out". Never "we", never "you can see".
+- Spoken rhythm. Short most of the time, then a long comma-run sentence when the explanation or the annoyance runs on. That swerve is the voice, not a defect to smooth out.
+- Tell the dumb part. Exact error, how long it ate, how stupid it felt. Owning it is the point.
+- Opinion stated once, flat, with the name attached. No cushion, no "in my experience" disclaimer.
+- Sweary where the frustration is honest. Match the material, never exceed it, never add profanity for flavor.
+- Dry and self-deprecating about my own mistakes. Never self-deprecating about my standards or my conclusions.
+- Ending: one short line that closes the thought, flat or dry. No summary, no takeaway, no "let me know".
+- The reader is a peer who isn't on my team. They searched this, found it, and want the no-BS note from someone who already ate it.
+
+Do / don't:
+
+> **Don't:** A proxy server acts as an intermediary between a client and a server.
+> **Do:** Proxy fucked me up for years. Proxy server, proxy war, proxy object in code. Same word, four different lives. It's just English for "you're going through something else to get there."
+
+> **Don't:** In this post, we'll explore how proxies actually work.
+> **Do:** I used to nod along when someone said proxy and pray nobody asked me to define it.
+
+> **Don't:** It's important to note that this approach has trade-offs.
+> **Do:** This bit is janky. It works, but it's janky.
+
+> **Don't:** I hope this helps you on your journey with proxies.
+> **Do:** Turns out the word was doing all the work and I was fighting the dictionary.
+
+**Cleaning spoken material:** cut filler, false starts, and stutter words from speech-to-text. Keep deliberate fragments, "I don't know", abbreviations, and mid-sentence swerves. A raw transcript is not a voice, and neither is polished prose.
+
+**The material is the real voice reference.** Where this profile and the author's own phrasing disagree, their phrasing wins.
 
 ### Step 6: Anti-AI pass
 
@@ -130,6 +163,9 @@ Remove these patterns from the output text. Leave any passage that already reads
 - **Hedging:** remove diplomat-style both-sides caveats ("While some may argue..."). Let the author's real stance stand firm.
 - **Metaphor stacks:** cut clichéd metaphors. Allow only one or two short, functional analogies where genuinely needed to demystify complex mechanics, and cut decorative or excessive ones.
 - **Formatting tells:** no bold-label bullets ("**Key takeaway:**"). No bold for emphasis unless the author used it. No emoji, no hashtags.
+- **Collective voice:** no "we", no "let's", no "you'll want to". The author is the one doing it, the reader is watching.
+- **Reader instructions:** cut "now you can...", "make sure to...", "you should consider...". The post reports what the author did, it doesn't instruct.
+- **Explained jokes:** if the author drops an aside or a joke, leave it and move on. No follow-up sentence explaining why it landed.
 - **Burstiness & paragraph dumps:** break up clustered, monotonous blocks of text. Vary the rhythm by mixing short punchy lines with longer technical thoughts. Never allow dense, unbroken paragraph walls.
 - **Quotes:** straight quotes as typed in the material.
 
@@ -139,14 +175,17 @@ Before saving, confirm:
 
 - It is still first person and still sounds like the author.
 - Most of the author's own sentences are still there.
-- The layout has breathing room: short punchy paragraphs, clean dividers, blockquote anchors, and no dense text dumps.
+- The mess survived: the wasted hours, the wrong turn, the exact error, the dumb moment.
+- It reads like the author talking, not explaining. No "we", no "you should", no takeaway sentence.
+- Rhythm swerves like speech: short lines, then a run-on where the point needs air. Not uniform sentence length.
+- With the byline removed, nobody would mistake it for a tutorial or a vendor post.
 - Mermaid diagrams are clean, well-proportioned, and not squished.
 - No em dashes, stock transitions, or setup lines remain.
 - Code, commands, and numbers are exact.
 - No claim was added that the material doesn't support, except safe, flagged gap-fills.
 - The file contains only the blog body, with no title, excerpt, or tags inside it.
 - Every image link is a live CDN URL or a credited source URL. No local paths.
-- The post ends on a wry line, not a call to action.
+- The post ends on one short line, not a call to action.
 
 Fix anything that fails, then save the file and write the metadata in the reply.
 
@@ -166,6 +205,10 @@ Then add one or two sentences on anything flagged, such as an unclear section, a
 
 - Do not change the meaning, conclusions, or technical content.
 - Do not flatten the author's personality into neutral prose. Keep the jokes, opinions, and bluntness.
+- Do not sanitize an opinion or soften a verdict on a named tool, vendor, or decision.
+- Do not hide the mistake or tidy the failure into a clean path.
+- Do not turn the story into a tutorial, a how-to, or a lesson.
+- Do not explain the author's own joke or aside.
 - Do not restructure into a generic template ("Introduction, Body, Conclusion").
 - Do not add a summary, TL;DR, or key takeaways section unless the author wrote one.
 - Do not pad. Cut anything that adds only words.
